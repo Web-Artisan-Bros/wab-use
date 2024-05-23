@@ -6,7 +6,8 @@
   "type": "module",
   "module": "dist/module.js",
   "scripts": {
-    "build": "rollup --config rollup.config.mjs"
+    "build": "rollup --config rollup.config.mjs",
+    "release": "release-it"
   },
   "author": "Web Artisan Bros",
   "license": "ISC",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.2.3",
     "parcel": "^2.12.0",
-    "rollup-plugin-dts": "^6.1.1"
+    "rollup-plugin-dts": "^6.1.1",
+    "release-it": "^17.3.0"
   }
 }

@@ -6,6 +6,9 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "type": "module",
+  "scripts": {
+    "release": "release-it"
+  },
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
