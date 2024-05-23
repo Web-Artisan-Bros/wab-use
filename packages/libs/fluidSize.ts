@@ -27,5 +27,3 @@ export function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: nu
     ]
     return `clamp(${clampParts.join(', ')});`
 }
-
-console.log(fluidSize(320, 1240, 2, 2*1.2));
