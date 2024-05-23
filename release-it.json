@@ -1,0 +1,8 @@
+{
+  "hooks":  {
+  },
+  "git": {
+    "commitMessage": "Release ${name} ${version}",
+    "tagName": "v${version}"
+  }
+}
