@@ -1,6 +1,6 @@
 {
   "name": "@wab-use/libs",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generic libs with random use cases",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
