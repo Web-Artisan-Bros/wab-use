@@ -14,8 +14,8 @@ export function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: nu
     const minVwMaxPxMult = minVW * maxPX
     const maxVwMinPxMult = maxVW * minPX
 
-    const minRem = minPX / 16
-    const maxRem = maxPX / 16
+    const minRem = (minPX / 16).toFixed(4)
+    const maxRem = (maxPX / 16).toFixed(4)
 
     const v = (100 * maxPxDiff) / maxVwDiff
     const r = ((minVwMaxPxMult - maxVwMinPxMult) / minVwDiff) / 16
@@ -27,3 +27,5 @@ export function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: nu
     ]
     return `clamp(${clampParts.join(', ')});`
 }
+
+console.log(fluidSize(320, 1240, 2, 2*1.2));
