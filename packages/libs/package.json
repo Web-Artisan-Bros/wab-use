@@ -2,14 +2,14 @@
   "name": "@wab-use/libs",
   "version": "1.0.0",
   "description": "Generic libs with random use cases",
-  "main": "index.cjs",
-  "module": "index.mjs",
-  "types": "index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.cjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },

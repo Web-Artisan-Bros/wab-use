@@ -2538,4 +2538,30 @@ function uuid() {
     return Math.random().toString(36).substring(2) + Date.now().toString(36);
 }
 
-export { arraySplitByLimit, classMerge, random, uuid };
+/**
+ * @link https://www.smashingmagazine.com/2022/01/modern-fluid-typography-css-clamp/
+ *
+ * @param {number} minVW
+ * @param {number} maxVW
+ * @param {number} minPX
+ * @param {number} maxPX
+ * @return {string} CSS clamp function
+ */
+function fluidSize(minVW, maxVW, minPX, maxPX) {
+    const maxPxDiff = maxPX - minPX;
+    const maxVwDiff = maxVW - minVW;
+    const minVwDiff = minVW - maxVW;
+    const minVwMaxPxMult = minVW * maxPX;
+    const maxVwMinPxMult = maxVW * minPX;
+    const minRem = minPX / 16;
+    const maxRem = maxPX / 16;
+    const v = (100 * maxPxDiff) / maxVwDiff;
+    const r = ((minVwMaxPxMult - maxVwMinPxMult) / minVwDiff) / 16;
+    return `clamp(
+      ${minRem}rem,
+      ${r.toFixed(4)}rem + ${v.toFixed(4)}vi,
+      ${maxRem}rem
+    );`;
+}
+
+export { arraySplitByLimit, classMerge, fluidSize, random, uuid };

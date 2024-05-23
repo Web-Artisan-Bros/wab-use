@@ -7,7 +7,7 @@ const config = []
 
 function getSettings (pkg, format) {
   let extension
-  
+
   switch (format) {
     case 'es':
       extension = 'mjs'
@@ -18,13 +18,13 @@ function getSettings (pkg, format) {
     default:
       extension = 'js'
   }
-  
+
   return {
     input: `packages/${pkg}/index.ts`,
     output: [
       {
-        file: `packages/${pkg}/index.${extension}`,
-        format: format
+        file: `packages/${pkg}/dist/index.${extension}`,
+        format: format,
       }
     ],
     plugins: [
@@ -39,7 +39,7 @@ function getDtsSettings (pkg) {
     input: `packages/${pkg}/index.ts`,
     output: [
       {
-        file: `packages/${pkg}/index.d.ts`
+        file: `packages/${pkg}/dist/index.d.ts`
       }
     ],
     plugins: [
