@@ -2,7 +2,7 @@ import typescript from '@rollup/plugin-typescript'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { dts } from 'rollup-plugin-dts'
 
-const packages = ['libs']
+const packages = ['libs', 'nuxt']
 const config = []
 
 function getSettings (pkg, format) {
