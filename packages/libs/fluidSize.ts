@@ -20,9 +20,10 @@ export function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: nu
     const v = (100 * maxPxDiff) / maxVwDiff
     const r = ((minVwMaxPxMult - maxVwMinPxMult) / minVwDiff) / 16
 
-    return `clamp(
-      ${minRem}rem,
-      ${r.toFixed(4)}rem + ${v.toFixed(4)}vi,
-      ${maxRem}rem
-    );`
+    const clampParts = [
+        `${minRem}rem`,
+        `${r.toFixed(4)}rem + ${v.toFixed(4)}vi`,
+        `${maxRem}rem`
+    ]
+    return `clamp(${clampParts.join(', ')});`
 }
