@@ -3,6 +3,6 @@
   },
   "git": {
     "commitMessage": "Release ${name} v${version}",
-    "tagName": "${name} v${version}"
+    "tagName": "v${version}"
   }
 }
