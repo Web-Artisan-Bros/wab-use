@@ -2,7 +2,7 @@
   "hooks":  {
   },
   "git": {
-    "commitMessage": "Release ${name} ${version}",
-    "tagName": "v${version}"
+    "commitMessage": "Release ${name} v${version}",
+    "tagName": "${name} v${version}"
   }
 }
