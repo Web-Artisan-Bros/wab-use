@@ -1,0 +1,22 @@
+{
+  "name": "wab-use-libs",
+  "version": "1.0.0",
+  "description": "Generic libs with random use cases",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Web Artisan Bros",
+  "license": "ISC",
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Web-Artisan-Bros/wab-use.git",
+    "directory": "packages/libs"
+  }
+}

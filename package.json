@@ -1,0 +1,23 @@
+{
+  "name": "wab-use",
+  "version": "1.0.0",
+  "description": "Collection of different libs, utilities and composables",
+  "main": "index.js",
+  "type": "module",
+  "module": "dist/module.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Web Artisan Bros",
+  "license": "ISC",
+  "repository": "git+https://github.com/Web-Artisan-Bros/wab-use.git",
+  "dependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "rollup": "^4.18.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "parcel": "^2.12.0",
+    "rollup-plugin-dts": "^6.1.1"
+  }
+}
