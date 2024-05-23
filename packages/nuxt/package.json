@@ -1,5 +1,5 @@
 {
-  "name": "wab-use-nuxt",
+  "name": "@wab-use/nuxt",
   "version": "1.0.0",
   "description": "Generic elements for Nuxt and Vue 3",
   "main": "index.cjs",

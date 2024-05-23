@@ -1,5 +1,5 @@
 {
-  "name": "wab-use-libs",
+  "name": "@wab-use/libs",
   "version": "1.0.0",
   "description": "Generic libs with random use cases",
   "main": "index.cjs",
