@@ -1,8 +1,8 @@
 'use strict';
 
-function arraySplit(list, rows) {
+function arraySplitByLimit(list, maxLength) {
     return list.reduce((acc, entry, i) => {
-        const index = i % rows;
+        const index = i % maxLength;
         if (!acc[index]) {
             acc[index] = [];
         }
@@ -2540,7 +2540,7 @@ function uuid() {
     return Math.random().toString(36).substring(2) + Date.now().toString(36);
 }
 
-exports.arraySplit = arraySplit;
+exports.arraySplitByLimit = arraySplitByLimit;
 exports.classMerge = classMerge;
 exports.random = random;
 exports.uuid = uuid;

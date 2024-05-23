@@ -6,7 +6,18 @@ const packages = ['libs']
 const config = []
 
 function getSettings (pkg, format) {
-  const extension = format === 'es' ? 'mjs' : 'js'
+  let extension
+  
+  switch (format) {
+    case 'es':
+      extension = 'mjs'
+      break
+    case 'cjs':
+      extension = 'cjs'
+      break
+    default:
+      extension = 'js'
+  }
   
   return {
     input: `packages/${pkg}/index.ts`,

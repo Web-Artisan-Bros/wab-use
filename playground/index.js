@@ -1,3 +1,3 @@
-import { arraySplit } from '../packages/libs'
+import { random, uuid, arraySplitByLimit } from '../packages/libs/index.mjs'
 
-arraySplit()
+console.log(uuid(), arraySplitByLimit([random(), random(), uuid()], 2))
