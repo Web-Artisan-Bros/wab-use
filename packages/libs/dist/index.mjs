@@ -2547,20 +2547,23 @@ function uuid() {
  * @param {number} maxPX
  * @return {string} CSS clamp function
  */
-function fluidSize(minVW, maxVW, minPX, maxPX) {
+function fluidSize(minVW, maxVW, minPX, maxPX, pxToRem = true, respUnit = 'rem') {
     const maxPxDiff = maxPX - minPX;
     const maxVwDiff = maxVW - minVW;
     const minVwDiff = minVW - maxVW;
     const minVwMaxPxMult = minVW * maxPX;
     const maxVwMinPxMult = maxVW * minPX;
-    const minRem = minPX / 16;
-    const maxRem = maxPX / 16;
+    const minRem = pxToRem ? +(minPX / 16).toFixed(4) : minPX;
+    const maxRem = pxToRem ? +(maxPX / 16).toFixed(4) : maxPX;
+    if (minRem == maxRem) {
+        return `${minRem}${respUnit}`;
+    }
     const v = (100 * maxPxDiff) / maxVwDiff;
     const r = ((minVwMaxPxMult - maxVwMinPxMult) / minVwDiff) / 16;
     const clampParts = [
-        `${minRem}rem`,
-        `${r.toFixed(4)}rem + ${v.toFixed(4)}vi`,
-        `${maxRem}rem`
+        `${minRem}${respUnit}`,
+        `${r.toFixed(4)}${respUnit} + ${v.toFixed(4)}vi`,
+        `${maxRem}${respUnit}`
     ];
     return `clamp(${clampParts.join(', ')});`;
 }

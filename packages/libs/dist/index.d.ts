@@ -16,6 +16,6 @@ declare function uuid(): string;
  * @param {number} maxPX
  * @return {string} CSS clamp function
  */
-declare function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: number): string;
+declare function fluidSize(minVW: number, maxVW: number, minPX: number, maxPX: number, pxToRem?: boolean, respUnit?: string): string;
 
 export { arraySplitByLimit, classMerge, fluidSize, random, uuid };
