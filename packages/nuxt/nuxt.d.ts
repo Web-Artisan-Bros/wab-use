@@ -2,7 +2,7 @@
 declare global {
   const onNuxtReady: (cb: () => any) => any
   const watch: (toWatch: any, cb: (val: any) => any, options: any) => any
-  const computed: (cb: () => any) => any
+  const computed: <T>(cb: () => any) => any
   const ref: <T>(val: any) => any
   const isRef: (val: any) => any
   const useRequestURL: () => any

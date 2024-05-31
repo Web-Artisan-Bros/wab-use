@@ -1,4 +1,5 @@
 import typescript from '@rollup/plugin-typescript'
+import copy from 'rollup-plugin-copy'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { dts } from 'rollup-plugin-dts'
 
@@ -29,7 +30,14 @@ function getSettings (pkg, format) {
     ],
     plugins: [
       typescript(),
-      nodeResolve()
+      nodeResolve(),
+      copy({
+        targets: [
+          // { src: 'src/index.html', dest: 'dist/public' },
+          // { src: ['assets/fonts/arial.woff', 'assets/fonts/arial.woff2'], dest: 'dist/public/fonts' },
+          // { src: 'assets/images/**/*', dest: 'dist/public/images' }
+        ]
+      })
     ]
   }
 }

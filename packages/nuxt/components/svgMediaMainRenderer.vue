@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useSvgIcons } from '../stores/svgIcons'
+import { useSvgMedia } from '../stores/svgMedia'
 
-const svgIcons = useSvgIcons()
+const svgIcons = useSvgMedia()
 </script>
 
 <template>

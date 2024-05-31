@@ -18,11 +18,11 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "declaration": false,
-//    "declarationDir": "./types",
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "experimentalDecorators": true
   },
   "include": [
     "*.ts",

@@ -2,7 +2,7 @@
 // @ts-ignore
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { classMerge } from '@wab-use/libs'
-import { type SvgIconType, useSvgIcons } from '~/stores/stores/svgIcons'
+import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
 
 const props = withDefaults(defineProps<{
   url: string
@@ -16,8 +16,8 @@ const props = withDefaults(defineProps<{
   showErrorIcon: true
 })
 
-const svgIcons = useSvgIcons()
-const svgData = computed<SvgIconType | null>(() => svgIcons.icons[props.url] ?? null)
+const svgIcons = useSvgMedia()
+const svgData = computed<SvgMediaType | null>(() => svgIcons.icons[props.url] ?? null)
 const svgEl = ref<HTMLOrSVGElement | null>(null)
 
 const classes = computed(() => props.class)

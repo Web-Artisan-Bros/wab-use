@@ -3,15 +3,15 @@ import { defineStore } from 'pinia'
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { uuid } from '@wab-use/libs'
 
-export type SvgIconType = {
+export type SvgMediaType = {
     html?: string,
     props?: any,
     id: string,
     error?: any
 }
 
-export const useSvgIcons = defineStore('wabSvgIcons', () => {
-  const icons = ref<Record<string, SvgIconType>>({})
+export const useSvgMedia = defineStore('wabSvgMedia', () => {
+  const icons = ref<Record<string, SvgMediaType>>({})
   
   const add = (url: string, svg: any = {}) => {
     icons.value[url] = svg

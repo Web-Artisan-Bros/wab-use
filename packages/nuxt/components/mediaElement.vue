@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import LocalVideo from './localVideo.vue'
-import SvgIcon from './svgIcon.vue'
-import ResponsiveImage from './responsiveImage.vue'
-import type { ResponsiveImageFormat } from './responsiveImage.vue'
+import VideoMedia from './videoMedia.vue'
+import SvgMedia from './svgMedia.vue'
+import ImageMedia from './imageMedia.vue'
 
 export interface MediaElementType {
   url: string,
   mime?: string,
   alternativeText: string,
   previewUrl?: string,
-  formats?: ResponsiveImageFormat[]
+  formats?: any[]
 }
 
 withDefaults(defineProps<{
@@ -25,13 +24,13 @@ withDefaults(defineProps<{
 
 <template>
   <Component :is="tag ?? 'div'">
-    <LocalVideo v-if="data.mime?.startsWith('video')"
+    <VideoMedia v-if="data.mime?.startsWith('video')"
                 class="w-full h-full"
-                :data="data"></LocalVideo>
+                :data="data"></VideoMedia>
 
-    <SvgIcon v-else-if="data.mime?.includes('svg')"
+    <SvgMedia v-else-if="data.mime?.includes('svg')"
              :url="data.url"
-             v-bind="$attrs"></SvgIcon>
+              v-bind="$attrs"></SvgMedia>
 
     <template v-else>
       <img v-if="simpleImage"
@@ -39,13 +38,13 @@ withDefaults(defineProps<{
            class="w-full h-full object-center"
            :class="{'object-cover': cover}">
 
-      <ResponsiveImage v-else
+      <ImageMedia v-else
                        :url="data.url"
                        :alternative-text="data.alternativeText"
                         :formats="data.formats"
                        :cover="cover"
                        class="w-full h-full"
-                       ></ResponsiveImage>
+      ></ImageMedia>
     </template>
   </Component>
 </template>

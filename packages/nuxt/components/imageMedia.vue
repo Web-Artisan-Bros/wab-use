@@ -14,7 +14,7 @@ const props = defineProps<{
 const mediaFormats = computed(() => {
   if (!props.formats) return null
 
-  return props.formats.map((format) => {
+  return props.formats.map((format: ResponsiveImageFormat) => {
     return {
       width: format.width,
       url: format.url
