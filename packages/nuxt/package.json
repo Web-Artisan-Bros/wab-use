@@ -20,7 +20,10 @@
   "author": "Web Artisan Bros",
   "license": "ISC",
   "dependencies": {
-    "framer-motion": "^11.2.6"
+    "@wab-use/libs": "^1.0.7",
+    "framer-motion": "^11.2.10",
+    "html-to-json-parser": "^2.0.1",
+    "pinia": "^2.1.7"
   },
   "repository": {
     "type": "git",
