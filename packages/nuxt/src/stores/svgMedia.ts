@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 // @ts-ignore
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { uuid } from '@wab-use/libs'
+import { computed, ref } from 'vue'
 
 export type SvgMediaType = {
     html?: string,
@@ -81,12 +82,8 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
   const fetchSvg = async (url: any) => {
     if (!url) return
     
-    console.log("fetching icon")
-    
     try {
-      const resp: Blob = await $fetch(url, {
-        responseType: 'blob'
-      })
+      const resp: Blob = await (await fetch(url)).blob()
       
       const rawHtml = await resp.text()
       
@@ -126,6 +123,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
     }
     
     Object.entries(parent).forEach(([key, value]) => {
+      console.log(key)
       if (parent.mime === 'image/svg+xml') {
         // Here we can call the store method to load the svg icon
         load(parent.url, parent)

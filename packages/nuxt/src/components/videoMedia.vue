@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { MediaElementType } from './mediaElement.vue'
 import {useInView} from '../composables/inView'
+import { computed, ref } from 'vue'
+// import { onNuxtReady } from 'nuxt/app'
 
 const props = defineProps<{
   data: MediaElementType,
@@ -11,20 +13,18 @@ const videoEl = ref<HTMLVideoElement | null>(null)
 const ready = ref(false)
 const videoIsReady = ref(false)
 
-onNuxtReady(() => {
-  videoEl.value?.addEventListener('loadeddata', () => {
-    videoIsReady.value = true
-  })
+videoEl.value?.addEventListener('loadeddata', () => {
+  videoIsReady.value = true
+})
 
-  useInView(videoEl, {
-    onInView: () => {
-      ready.value = true
-      videoEl.value?.play()
-    },
-    onOutView: () => {
-      videoEl.value?.pause()
-    }
-  })
+useInView(videoEl, {
+  onInView: () => {
+    ready.value = true
+    videoEl.value?.play()
+  },
+  onOutView: () => {
+    videoEl.value?.pause()
+  }
 })
 
 const poster = computed(() => {

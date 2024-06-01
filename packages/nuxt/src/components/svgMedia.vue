@@ -3,6 +3,7 @@
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { classMerge } from '@wab-use/libs'
 import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   url: string
@@ -26,11 +27,9 @@ defineExpose({
   svgEl
 })
 
-onNuxtReady(() => {
-  watch(() => props.url, (url) => {
-    svgIcons.load(url, {})
-  }, {immediate: true})
-})
+watch(() => props.url, (url) => {
+  svgIcons.load(url, {})
+}, {immediate: true})
 
 </script>
 

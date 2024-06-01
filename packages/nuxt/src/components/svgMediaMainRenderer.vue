@@ -6,7 +6,7 @@ const svgIcons = useSvgMedia()
 
 <template>
   <client-only>
-    <div class="svgIcons h-0 overflow-hidden">
+    <div class="svgIcons" style="display: none">
       <svg class="h-0">
         <defs>
           <linearGradient id="bg-gradient-vertical" gradientUnits="userSpaceOnUse">

@@ -2,17 +2,24 @@
   "name": "@wab-use/nuxt",
   "version": "1.0.5",
   "description": "Generic elements for Nuxt and Vue 3",
-  "main": "index.cjs",
-  "module": "index.mjs",
-  "types": "index.d.ts",
+  "main": "./dist/wab-use-nuxt.js",
+  "files": [
+    "dist"
+  ],
+  "module": "./dist/wab-use-nuxt.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "types": "vue-tsc ",
+    "preview": "vite preview",
     "release": "release-it -c ../../release-it.json"
   },
   "exports": {
     ".": {
-      "import": "./index.mjs",
-      "require": "./index.cjs",
+      "import": "./dist/wab-use-nuxt.js",
+      "require": "./dist/wab-use-nuxt.umd.cjs",
       "types": "./dist/index.d.ts"
     },
     "./*": "./*"
@@ -23,11 +30,18 @@
     "@wab-use/libs": "^1.0.7",
     "framer-motion": "^11.2.10",
     "html-to-json-parser": "^2.0.1",
-    "pinia": "^2.1.7"
+    "nuxt": "^3.11.2",
+    "pinia": "^2.1.7",
+    "vue": "^3.2.47"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Web-Artisan-Bros/wab-use.git",
     "directory": "packages/nuxt"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vite": "^5.2.12",
+    "vue-tsc": "^2.0.19"
   }
 }

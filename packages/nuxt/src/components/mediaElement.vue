@@ -23,7 +23,7 @@ withDefaults(defineProps<{
 </script>
 
 <template>
-  <Component :is="tag ?? 'div'">
+  <Component :is="tag ?? 'div'" v-if="data">
     <VideoMedia v-if="data.mime?.startsWith('video')"
                 class="w-full h-full"
                 :data="data"></VideoMedia>

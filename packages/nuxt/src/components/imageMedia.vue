@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { computed } from 'vue'
+
 export interface ResponsiveImageFormat {
   width: number;
   url: string;
