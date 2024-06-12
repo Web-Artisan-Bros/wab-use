@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { useSvgMedia } from '../stores/svgMedia'
+import { ClientOnly } from 'nuxt'
 
 const svgIcons = useSvgMedia()
 </script>
 
 <template>
-  <client-only>
+  <ClientOnly>
     <div class="svgIcons" style="display: none">
       <svg class="h-0">
         <defs>
@@ -37,7 +38,7 @@ const svgIcons = useSvgMedia()
         />
       </template>
     </div>
-  </client-only>
+  </ClientOnly>
 </template>
 
 <style scoped>

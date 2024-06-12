@@ -4,7 +4,14 @@ import vue from "@vitejs/plugin-vue";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue({
+    template: {}
+  })],
+  resolve: {
+    alias: {
+      "#nuxt": resolve(__dirname, "node_modules/nuxt/dist"),
+    }
+  },
   build: {
     lib: {
       // Could also be a dictionary or array of multiple entry points

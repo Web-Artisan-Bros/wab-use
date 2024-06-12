@@ -4,6 +4,10 @@ import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { classMerge } from '@wab-use/libs'
 import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
 import { computed, ref, watch } from 'vue'
+// import ClientOnly from "#nuxt/components/client-only";
+import { useNuxtApp } from '#nuxt'
+const nuxtApp = useNuxtApp();
+
 
 const props = withDefaults(defineProps<{
   url: string
@@ -34,7 +38,7 @@ watch(() => props.url, (url) => {
 </script>
 
 <template>
-  <client-only>
+  <ClientOnly>
     <svg v-if="svgData && !includeFullSvg && !svgData.error"
          v-bind="{...(svgData?.props ?? {}), ...$attrs}"
          :class="classMerge('w-full h-full', classes)"
@@ -58,7 +62,7 @@ watch(() => props.url, (url) => {
          ref="svgEl">
       <use href="#error_icon"></use>
     </svg>
-  </client-only>
+  </ClientOnly>
 
 </template>
 
