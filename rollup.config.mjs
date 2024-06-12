@@ -3,7 +3,7 @@ import copy from 'rollup-plugin-copy'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { dts } from 'rollup-plugin-dts'
 
-const packages = ['libs', 'nuxt']
+const packages = ['libs']
 const config = []
 
 function getSettings (pkg, format) {

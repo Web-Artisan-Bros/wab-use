@@ -30,6 +30,7 @@
     "meta",
   ],
   "exclude": [
+    "packages/nuxt/**/*.ts",
     "unocss.config.ts",
     "node_modules",
     "**/*.md",
