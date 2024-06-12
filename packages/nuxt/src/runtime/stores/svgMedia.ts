@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-// @ts-ignore
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { uuid } from '@wab-use/libs'
 import { computed, ref } from 'vue'
@@ -51,7 +50,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
     
     // convert style string to object
     props.style = (props.style ?? '').split(';').reduce((acc: any, style: string) => {
-      let [key, value] = style.split(':')
+      const [key, value] = style.split(':')
       
       if (!key) {
         return acc
@@ -64,7 +63,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
     return { props, content: svgNode }
   }
   
-  const generateSvgContent = async (svgNode: any): Promise<string[]> => {
+  const generateSvgContent = async (svgNode: { content: any[] }): Promise<string[]> => {
     const svgContent: string[] = []
     
     // convert each child node to HTML
@@ -79,25 +78,27 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
     return svgContent
   }
   
-  const fetchSvg = async (url: any) => {
+  const fetchSvg = async (url?: string) => {
     if (!url) return
-    
+
     try {
-      const resp: Blob = await (await fetch(url)).blob()
+      const resp: Blob = await $fetch(url, {
+        responseType: 'blob'
+      })
       
       const rawHtml = await resp.text()
       
       const json = await parseHtml(rawHtml)
       const nodesArray: string[] = await generateSvgContent(json?.content)
       
-      // svg['html'] = nodesArray.join('')
-      // svg['props'] = json?.props
-      
+      // console.log( json)
       return {
         html: nodesArray.join(''),
         props: json?.props
       }
     } catch (e) {
+      console.error(e)
+      
       return {
         html: null,
         props: null,
@@ -110,7 +111,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
   const searchForSvg = (parent: any) => {
     let toReturn = [] as any
     
-    if (parent instanceof Array) {
+    if (Array.isArray(parent)) {
       parent.forEach((item) => {
         const data = searchForSvg(item)
         
@@ -152,6 +153,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
     get,
     load,
     searchForSvg,
+    fetchSvg,
     iconsList: computed(() => Object.values(icons.value))
   }
 })

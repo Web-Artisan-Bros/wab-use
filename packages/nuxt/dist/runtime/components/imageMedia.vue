@@ -45,6 +45,6 @@ const mediaFormats = computed(() => {
   </picture>
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>

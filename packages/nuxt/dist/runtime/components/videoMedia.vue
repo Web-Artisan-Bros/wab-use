@@ -47,6 +47,6 @@ const classes = computed(() => props.class)
   >
 </template>
 
-<style scoped lang="scss">
+<style scoped>
 
 </style>

@@ -12,7 +12,7 @@ export function useInView (el: any, options?: Options | undefined) {
   const state = ref(false)
   
   watch(() => el, (el) => {
-    if (!el || isRef(el) && !el.value) return
+    if (!el || (isRef(el) && !el.value)) return
     
     inView(isRef(el) ? el.value : el, ({ target }) => {
       state.value = true
@@ -25,7 +25,6 @@ export function useInView (el: any, options?: Options | undefined) {
         options && options.onOutView && options.onOutView(target as any)
       }
     }, {
-      // @ts-ignore
       amount: 0.1,
       ...(options ?? {})
     })

@@ -83,7 +83,5 @@ onNuxtReady(() => {
 </template>
 
 <style>
-:root {
-  --svg-fill: currentColor;
-}
+:root{--svg-fill:currentColor}
 </style>
