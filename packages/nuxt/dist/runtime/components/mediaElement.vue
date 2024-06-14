@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { classMerge } from '@wab-use/libs'
+
 export interface MediaElementType {
   url: string,
   mime?: string,
@@ -12,6 +14,7 @@ withDefaults(defineProps<{
   tag?: string
   simpleImage?: boolean
   cover?: boolean
+  imgClass?: string
 }>(), {
   cover: true,
   tag: 'div',
@@ -32,16 +35,14 @@ withDefaults(defineProps<{
     <template v-else>
       <img v-if="simpleImage"
            :src="data.url" :alt="data.alternativeText"
-           class="w-full h-full object-center"
-           :class="{'object-cover': cover}">
+           :class="classMerge('w-full h-full object-center', imgClass, {'object-cover': cover, 'object-contain': !cover})">
 
       <ImageMedia v-else
                  :url="data.url"
                  :alternative-text="data.alternativeText"
                   :formats="data.formats"
                  :cover="cover"
-                 class="w-full h-full"
-      />
+                  :class="classMerge('w-full h-full object-center', imgClass)"/>
     </template>
   </Component>
 </template>
