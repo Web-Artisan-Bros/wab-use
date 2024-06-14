@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit'
 
 // Module options TypeScript interface definition
 export interface ModuleOptions {}
@@ -22,5 +22,7 @@ export default defineNuxtModule<ModuleOptions>({
       prefix: "", // Prefix all matched components.
       global: true, // Registers components to be globally available.
     });
+    
+    addImportsDir([resolver.resolve('./runtime/composables')])
   },
 })

@@ -1,7 +1,7 @@
 {
   "name": "@wab-use/nuxt",
   "configKey": "@wab-use-nuxt",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "builder": {
     "@nuxt/module-builder": "0.6.0",
     "unbuild": "2.0.0"

@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit';
 
 const module = defineNuxtModule({
   meta: {
@@ -19,6 +19,7 @@ const module = defineNuxtModule({
       global: true
       // Registers components to be globally available.
     });
+    addImportsDir([resolver.resolve("./runtime/composables")]);
   }
 });
 

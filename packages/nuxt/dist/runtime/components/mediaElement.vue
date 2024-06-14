@@ -47,6 +47,6 @@ withDefaults(defineProps<{
   </Component>
 </template>
 
-<style scoped>
-
+<style>
+.w-full{width:100%}.h-full{height:100%}.object-center{-o-object-position:center;object-position:center}.object-cover{-o-object-fit:cover;object-fit:cover}.object-contain{-o-object-fit:contain;object-fit:contain}
 </style>

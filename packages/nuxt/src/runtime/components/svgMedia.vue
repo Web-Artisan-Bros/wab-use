@@ -5,7 +5,7 @@ import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
 const props = withDefaults(defineProps<{
   url: string
   includeFullSvg?: boolean
-  class?: string
+  class?: any
   showErrorIcon?: boolean,
   lazy?: boolean
 }>(), {

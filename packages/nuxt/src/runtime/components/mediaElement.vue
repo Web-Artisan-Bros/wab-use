@@ -47,6 +47,24 @@ withDefaults(defineProps<{
   </Component>
 </template>
 
-<style scoped lang="scss">
+<style>
+.w-full {
+  width: 100%;
+}
 
+.h-full {
+  height: 100%;
+}
+
+.object-center {
+  object-position: center;
+}
+
+.object-cover {
+  object-fit: cover;
+}
+
+.object-contain {
+  object-fit: contain;
+}
 </style>
