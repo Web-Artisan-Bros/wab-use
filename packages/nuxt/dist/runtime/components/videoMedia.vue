@@ -18,7 +18,11 @@ videoEl.value?.addEventListener('loadeddata', () => {
 useInView(videoEl, {
   onInView: () => {
     ready.value = true
-    videoEl.value?.play()
+
+    // wait for the DOM to update after ready.value change
+    setTimeout(() => {
+      videoEl.value?.play()
+    })
   },
   onOutView: () => {
     videoEl.value?.pause()

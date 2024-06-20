@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
-    "@wab-use/libs": "^1.0.7",
+    "@wab-use/libs": "^1.0.8",
     "framer-motion": "^11.2.10",
     "html-to-json-parser": "^2.0.1",
     "pinia": "^2.1.7",
