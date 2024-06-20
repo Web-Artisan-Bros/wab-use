@@ -18,6 +18,7 @@ withDefaults(defineProps<{
 }>(), {
   cover: true,
   tag: 'div',
+  imgClass: ''
 })
 
 </script>

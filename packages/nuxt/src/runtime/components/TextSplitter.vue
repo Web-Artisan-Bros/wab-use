@@ -7,6 +7,8 @@ const props = withDefaults(defineProps<{
   letterClass?: string
   type?: 'letter' | 'word'
 }>(), {
+  tag: 'span',
+  letterClass: '',
   type: 'letter'
 })
 const el = ref(null)
@@ -45,6 +47,10 @@ const splitLetters = (text: string) => {
 }
 
 const sections = computed(() => {
+  if (!props.text) {
+    return []
+  }
+
   if (props.type === 'word') {
     return splitWords(props.text)
   }
@@ -60,21 +66,24 @@ watch(() => props.text, () => {
 </script>
 
 <template>
-  <component :is="props.tag ?? 'div'" class="text-splitter"
+  <component :is="props.tag ?? 'div'"
+             ref="el"
+             class="text-splitter"
              :class="classMerge($attrs.class, `split-by-${type}`)"
-             ref="el">
-    <span v-for="(word, i) in sections"
+  >
+    <span v-for="(word, i) in sections" :key="`${id}_w_${i}`"
           class="wrapper"
-          :key="`${id}_w_${i}`">
-      <span :class="classMerge(letterClass,'word')"
-            v-if="Array.isArray(word)">
+    >
+      <span v-if="Array.isArray(word)"
+            :class="classMerge(letterClass,'word')"
+            >
           <span v-for="(letter, j) in word"
                 :key="`${id}_w_${i}_l_${j}`"
                 class="letter"
                 v-html="letter"/>
       </span>
 
-      <span v-else class="word" v-html="word"></span>
+      <span v-else class="word" v-html="word" />
     </span>
   </component>
 </template>

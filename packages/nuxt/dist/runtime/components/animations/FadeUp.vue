@@ -20,6 +20,7 @@ watch(() => el.value, (element) => {
         y: '0%',
         opacity: 1
       }, {
+        delay: props.delay ?? 0,
         duration: 1,
         ease: [.23, 1, .32, 1]
       })
@@ -43,7 +44,7 @@ watch(() => el.value, (element) => {
 
 <template>
   <Component :is="tag ?? 'div'" ref="el" class="fade-up">
-    <slot></slot>
+    <slot />
   </Component>
 </template>
 

@@ -2,7 +2,7 @@
 import { classMerge } from '@wab-use/libs'
 import { animate, stagger } from 'framer-motion/dom'
 import TextSplitter from '../TextSplitter.vue'
-import { AnimationPlaybackControls } from 'framer-motion'
+import type { AnimationPlaybackControls } from 'framer-motion'
 
 const props = withDefaults(
     defineProps<{
@@ -18,6 +18,9 @@ const props = withDefaults(
       animation?: 'reveal' | 'fade',
       once?: boolean
     }>(), {
+      tag: 'div',
+      letterClass: '',
+      type: 'word',
       durationIn: .4,
       staggerIn: .01,
       durationOut: .2,
@@ -50,7 +53,7 @@ const showText = () => {
     }
   }
 
-  if (!elements || !animation) return
+  if (!elements || !elements.length || !animation) return
 
   animate(elements, animation,
       {
@@ -79,7 +82,7 @@ const hideText = (): AnimationPlaybackControls => {
     }
   }
 
-  if (!elements || !animation) return
+  if (!elements || !elements.length || !animation) return
 
   // first hide the current text
   return animate(elements, animation,
@@ -130,7 +133,7 @@ watch(() => wrapperEl.value, (el) => {
 <template>
   <TextSplitter ref="wrapperEl"
                 :text="textToShow"
-                :letterClass="classMerge( props.letterClass )"
+                :letter-class="classMerge( props.letterClass )"
                 class="text-stagger-change"
                 :class="classMerge($attrs.class, `animation-${animation}`)"
                 :tag="tag ?? 'div'"

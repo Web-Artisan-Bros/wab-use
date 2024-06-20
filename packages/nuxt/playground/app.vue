@@ -2,16 +2,19 @@
   <div class="app">
     <SvgMedia style="color: white" eager url="http://localhost:8056/assets/c4744fa6-a211-4709-90e0-1f46d5e1c29c" />
 
-    <TextStaggerAnimate @click="changeText" :text="text" type="letter" animation="reveal"
-                        style="font-size: 5rem"/>
+    <TextStaggerAnimate :text="text" type="letter" animation="reveal"
+                        style="font-size: 5rem"
+                        @click="changeText"
+    />
 
     <FadeUp>
-      <TextSplitter text="Ciao come va?" type="letter"></TextSplitter>
+      <TextSplitter text="Ciao come va?" type="letter"/>
     </FadeUp>
 
-    <TextStaggerAnimate @click="changeText" :text="text" type="letter" animation="fade"
+    <TextStaggerAnimate :text="text" type="letter" animation="fade"
                         :once="false"
-                        style="font-size: 5rem"/>
+                        style="font-size: 5rem"
+                        @click="changeText"/>
   </div>
 
   <SvgMediaMainRenderer />
