@@ -1,6 +1,6 @@
 {
   "name": "@wab-use/nuxt",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Generic elements for Nuxt and Vue 3",
   "repository": {
     "type": "git",
