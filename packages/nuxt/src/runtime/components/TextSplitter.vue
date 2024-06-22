@@ -89,8 +89,12 @@ watch(() => props.text, () => {
 </template>
 
 <style scoped>
+.text-splitter{
+
+}
 .letter, .word {
-  line-height: 1em;
+  /* give more space to avoid cut text */
+  line-height: 1.1em;
 }
 
 .word {
@@ -98,8 +102,7 @@ watch(() => props.text, () => {
 }
 
 span {
-  display: inline-block;
+  display: inline-flex;
   overflow: hidden;
-  //border: 1px solid white
 }
 </style>

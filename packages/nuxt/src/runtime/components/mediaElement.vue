@@ -20,11 +20,14 @@ withDefaults(defineProps<{
   tag: 'div',
   imgClass: ''
 })
+const el = ref<HTMLElement | null>()
+
+defineExpose({el})
 
 </script>
 
 <template>
-  <Component :is="tag ?? 'div'" v-if="data">
+  <Component :is="tag ?? 'div'" v-if="data" ref="el">
     <VideoMedia v-if="data.mime?.startsWith('video')"
                 class="w-full h-full"
                 :data="data"/>

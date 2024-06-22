@@ -89,5 +89,5 @@ watch(() => props.text, () => {
 </template>
 
 <style scoped>
-.letter,.word{line-height:1em}.word{white-space:nowrap}span{display:inline-block;overflow:hidden;//border:1px solid #fff}
+.letter,.word{line-height:1.1em}.word{white-space:nowrap}span{display:inline-flex;overflow:hidden}
 </style>
