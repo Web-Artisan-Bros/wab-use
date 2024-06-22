@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.0.16
+
+[compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/@wab-use/nuxt_v1.0.15...v1.0.16)
+
 ## v1.0.12
 
 [compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/@wab-use/libs_v1.0.8...v1.0.12)
