@@ -4,6 +4,7 @@ import { animate, stagger } from 'framer-motion/dom'
 import TextSplitter from '../TextSplitter.vue'
 import type { AnimationPlaybackControls } from 'framer-motion'
 import { ref, watch } from 'vue'
+import { useInView } from '#imports'
 
 const props = withDefaults(
     defineProps<{
@@ -65,7 +66,7 @@ const showText = () => {
   hasRanOnce.value = true
 }
 
-const hideText = (): AnimationPlaybackControls => {
+const hideText = (): AnimationPlaybackControls | undefined => {
   const elements = wrapperEl.value?.el?.querySelectorAll('.' + props.type)
   let animation = {}
 
@@ -114,6 +115,7 @@ watch(() => wrapperEl.value, (el) => {
 
   useInView(wrapperEl.value?.el, {
     amount: .5,
+    once: props.once,
     onInView: () => {
       if ((props.once && !hasRanOnce.value) || !props.once) {
         showText()
@@ -124,8 +126,6 @@ watch(() => wrapperEl.value, (el) => {
         hideText()
       }
     }
-  }, {
-    once: props.once
   })
 }, { immediate: true })
 
@@ -136,7 +136,7 @@ watch(() => wrapperEl.value, (el) => {
                 :text="textToShow"
                 :letter-class="classMerge( props.letterClass )"
                 class="text-stagger-change"
-                :class="classMerge($attrs.class, `animation-${animation}`)"
+                :class="classMerge($attrs.class as any, `animation-${animation}`)"
                 :tag="tag ?? 'div'"
                 :type="type"
   />
