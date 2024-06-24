@@ -24,6 +24,5 @@ export default defineNuxtModule<ModuleOptions>({
     });
     
     addImportsDir([resolver.resolve('./runtime/composables')])
-    addImportsDir([resolver.resolve('./runtime/xmldom')])
   },
 })
