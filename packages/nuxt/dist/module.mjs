@@ -20,6 +20,7 @@ const module = defineNuxtModule({
       // Registers components to be globally available.
     });
     addImportsDir([resolver.resolve("./runtime/composables")]);
+    addImportsDir([resolver.resolve("./runtime/xmldom")]);
   }
 });
 

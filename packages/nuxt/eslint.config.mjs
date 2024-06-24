@@ -30,5 +30,5 @@ export default createConfigForNuxt({
     }
   )
   .prepend({
-    ignores: ['src/runtime/vendors/**/*']
+    ignores: ['src/vendors/**/*']
   })
