@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { HTMLToJSON, JSONToHTML } from "html-to-json-parser";
 import { uuid } from "@wab-use/libs";
 import { computed, ref } from "vue";
 export const useSvgMedia = defineStore("wabSvgMedia", () => {
@@ -25,31 +24,15 @@ export const useSvgMedia = defineStore("wabSvgMedia", () => {
     return icons.value[url];
   };
   const parseHtml = async (html) => {
-    const json = await HTMLToJSON(`<content>${html}</content>`);
-    if (!json || !json.content) {
-      return;
-    }
-    const svgNode = json.content.find((node) => node.type === "svg" && node.content?.length > 0);
-    const props = svgNode?.attributes ?? {};
-    props.style = (props.style ?? "").split(";").reduce((acc, style) => {
-      const [key, value] = style.split(":");
-      if (!key) {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(html, "text/xml").children[0];
+    return {
+      props: Array.from(xmlDoc.attributes).reduce((acc, el) => {
+        acc[el.name] = el.value;
         return acc;
-      }
-      acc[key] = value;
-      return acc;
-    }, {});
-    return { props, content: svgNode };
-  };
-  const generateSvgContent = async (svgNode) => {
-    const svgContent = [];
-    await Promise.all(svgNode.content.map(async (curr) => {
-      if (typeof curr === "object") {
-        const html = await JSONToHTML(curr);
-        svgContent.push(html);
-      }
-    }));
-    return svgContent;
+      }, {}),
+      content: xmlDoc
+    };
   };
   const fetchSvg = async (url) => {
     if (!url)
@@ -59,11 +42,10 @@ export const useSvgMedia = defineStore("wabSvgMedia", () => {
         responseType: "blob"
       });
       const rawHtml = await resp.text();
-      const json = await parseHtml(rawHtml);
-      const nodesArray = await generateSvgContent(json?.content);
+      const svgEl = await parseHtml(rawHtml);
       return {
-        html: nodesArray.join(""),
-        props: json?.props
+        html: svgEl.content.outerHTML,
+        props: svgEl.props ?? {}
       };
     } catch (e) {
       console.error(e);
