@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "@wab-use/nuxt": "file:..",
     "nuxt": "^3.11.2"
   }
 }
