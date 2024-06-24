@@ -1,6 +1,4 @@
 import { defineStore } from 'pinia'
-// @ts-ignore
-import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { uuid } from '@wab-use/libs'
 import { computed, ref } from 'vue'
 
@@ -40,43 +38,16 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
   }
   
   const parseHtml = async (html: string) => {
-    const json = await HTMLToJSON(`<content>${html}</content>`)
+    const parser = new DOMParser()
+    let xmlDoc: HTMLElement = parser.parseFromString(html, 'text/xml').children[0] as HTMLElement
     
-    if (!json || !json.content) {
-      return
-    }
-    
-    const svgNode = json.content.find((node: any) => node.type === 'svg' && node.content?.length > 0)
-    const props = svgNode?.attributes ?? {}
-    
-    // convert style string to object
-    props.style = (props.style ?? '').split(';').reduce((acc: any, style: string) => {
-      const [key, value] = style.split(':')
-      
-      if (!key) {
+    return {
+      props: Array.from(xmlDoc.attributes).reduce((acc, el) => {
+        acc[el.name] = el.value
         return acc
-      }
-      
-      acc[key] = value
-      return acc
-    }, {})
-    
-    return { props, content: svgNode }
-  }
-  
-  const generateSvgContent = async (svgNode: { content: any[] }): Promise<string[]> => {
-    const svgContent: string[] = []
-    
-    // convert each child node to HTML
-    await Promise.all(svgNode.content.map(async (curr: any) => {
-      if (typeof curr === 'object') {
-        const html: string = await JSONToHTML(curr)
-        
-        svgContent.push(html)
-      }
-    }))
-    
-    return svgContent
+      }, {} as any),
+      content: xmlDoc
+    }
   }
   
   const fetchSvg = async (url?: string) => {
@@ -88,14 +59,11 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
       })
       
       const rawHtml = await resp.text()
+      const svgEl = await parseHtml(rawHtml)
       
-      const json = await parseHtml(rawHtml)
-      const nodesArray: string[] = await generateSvgContent(json?.content)
-      
-      // console.log( json)
       return {
-        html: nodesArray.join(''),
-        props: json?.props
+        html: svgEl.content.outerHTML,
+        props: svgEl.props ?? {}
       }
     } catch (e) {
       console.error(e)
