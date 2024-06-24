@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { uuid } from "@wab-use/libs";
 import { computed, ref } from "vue";
-import { DOMParser } from "@xmldom/xmldom";
+import { DOMParser } from "../../vendors/xmldom";
 export const useSvgMedia = defineStore("wabSvgMedia", () => {
   const icons = ref({});
   const add = (url, svg = {}) => {

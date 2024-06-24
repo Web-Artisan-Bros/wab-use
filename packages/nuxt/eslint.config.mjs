@@ -26,6 +26,9 @@ export default createConfigForNuxt({
         '@stylistic/brace-style': 'off',
         'vue/no-v-html': 'off',
         "@typescript-eslint/ban-ts-comment": "off",
-      }
+      },
     }
   )
+  .prepend({
+    ignores: ['src/runtime/vendors/**/*']
+  })
