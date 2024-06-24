@@ -35,8 +35,11 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.11.2",
+    "@types/jsdom": "^21.1.7",
     "@wab-use/libs": "^1.0.8",
+    "@xmldom/xmldom": "^0.8.10",
     "framer-motion": "^11.2.10",
+    "jsdom": "^24.1.0",
     "pinia": "^2.1.7",
     "vue": "^3.4.27"
   },
