@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { uuid } from '@wab-use/libs'
 import { computed, ref } from 'vue'
-import { DOMParser } from '@xmldom/xmldom'
+import * as xmldom from '@xmldom/xmldom'
 
 export type SvgMediaType = {
     html?: string,
@@ -39,7 +39,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
   }
   
   const parseHtml = async (html: string) => {
-    const parser = new DOMParser()
+    const parser = new xmldom.DOMParser()
     const xmlDoc = parser.parseFromString(html, 'text/xml').getElementsByTagName('svg')[0]
     
     return {
