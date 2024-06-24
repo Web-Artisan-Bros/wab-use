@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { uuid } from '@wab-use/libs'
 import { computed, ref } from 'vue'
-import { DOMParser } from '../xmldom/index.js'
+import { DOMParser } from '../xmldom/index'
 
 export type SvgMediaType = {
     html?: string,
