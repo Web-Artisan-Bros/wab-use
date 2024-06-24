@@ -2,6 +2,7 @@
 import { classMerge } from '@wab-use/libs'
 import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
 import { computed, ref, watch } from 'vue'
+import { useAsyncData, onNuxtReady } from '#app'
 
 const props = withDefaults(defineProps<{
   url: string

@@ -25,6 +25,7 @@ export default createConfigForNuxt({
         '@typescript-eslint/no-explicit-any': 'off',
         '@stylistic/brace-style': 'off',
         'vue/no-v-html': 'off',
+        "@typescript-eslint/ban-ts-comment": "off",
       }
     }
   )
