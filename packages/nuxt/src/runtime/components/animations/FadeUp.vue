@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { animate } from 'framer-motion/dom'
+import { ref, watch } from 'vue'
 
 const props = defineProps<{
   delay?: number,

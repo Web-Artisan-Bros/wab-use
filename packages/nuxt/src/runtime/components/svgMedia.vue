@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { classMerge } from '@wab-use/libs'
 import { type SvgMediaType, useSvgMedia } from '../stores/svgMedia'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   url: string

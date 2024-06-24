@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { classMerge } from '@wab-use/libs'
+import { ref } from 'vue'
 
 export interface MediaElementType {
   url: string,

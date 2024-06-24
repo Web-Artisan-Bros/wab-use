@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { classMerge, uuid } from '@wab-use/libs'
+import { computed, ref, watch } from 'vue'
 
 const props = withDefaults(defineProps<{
   text: string

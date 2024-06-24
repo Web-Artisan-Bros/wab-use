@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { MediaElementType } from './mediaElement.vue'
 import {useInView} from '../composables/inView'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   data: MediaElementType,

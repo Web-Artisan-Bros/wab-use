@@ -3,6 +3,7 @@ import { classMerge } from '@wab-use/libs'
 import { animate, stagger } from 'framer-motion/dom'
 import TextSplitter from '../TextSplitter.vue'
 import type { AnimationPlaybackControls } from 'framer-motion'
+import { ref, watch } from 'vue'
 
 const props = withDefaults(
     defineProps<{
