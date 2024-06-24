@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+// @ts-ignore
 import { HTMLToJSON, JSONToHTML } from 'html-to-json-parser'
 import { uuid } from '@wab-use/libs'
 import { computed, ref } from 'vue'
