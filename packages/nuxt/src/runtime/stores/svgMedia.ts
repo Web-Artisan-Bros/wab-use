@@ -40,7 +40,7 @@ export const useSvgMedia = defineStore('wabSvgMedia', () => {
   
   const parseHtml = async (html: string) => {
     const parser = new DOMParser()
-    const xmlDoc: HTMLElement = parser.parseFromString(html, 'text/xml').getElementsByTagName('svg')[0]
+    const xmlDoc = parser.parseFromString(html, 'text/xml').getElementsByTagName('svg')[0]
     
     return {
       props: Array.from(xmlDoc.attributes).reduce((acc, el) => {
