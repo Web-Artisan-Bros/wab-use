@@ -38,8 +38,8 @@ const mediaFormats = computed(() => {
 
     <img :src="url"
          :alt="alternativeText"
-         class="max-h-full block"
-         :class="{'object-cover h-full w-full': cover}"
+         class="h-full w-full block"
+         :class="{'object-cover': cover}"
          loading="lazy"
     >
   </picture>
