@@ -18,11 +18,11 @@ const el = ref(null)
 const id = ref(uuid())
 
 const splitWords = (text: string): string[] => {
-  return (text.split(' ') ?? [])
+  return (text.trim().split(' ') ?? [])
       .reduce((acc, curr, i, arr) => {
         acc.push(curr)
 
-        if (i < arr.length) {
+        if (i < arr.length - 1) {
           acc.push('&nbsp;')
         }
 
@@ -31,7 +31,7 @@ const splitWords = (text: string): string[] => {
 }
 
 const splitLetters = (text: string) => {
-  const words: string[] = splitWords(text)
+  const words: string[] = splitWords(text.trim())
 
   return words.map(word => {
     if (word === '&nbsp;') {
