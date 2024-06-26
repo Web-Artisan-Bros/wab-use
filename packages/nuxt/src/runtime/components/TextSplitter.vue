@@ -6,6 +6,8 @@ const props = withDefaults(defineProps<{
   text: string
   tag?: string
   letterClass?: string
+  wordClass?: string
+  wrapperClass?: string
   type?: 'letter' | 'word'
 }>(), {
   tag: 'span',
@@ -73,18 +75,20 @@ watch(() => props.text, () => {
              :class="classMerge($attrs.class, `split-by-${type}`)"
   >
     <span v-for="(word, i) in sections" :key="`${id}_w_${i}`"
-          class="wrapper"
+          :class="classMerge(wrapperClass, 'wrapper')"
     >
       <span v-if="Array.isArray(word)"
-            :class="classMerge(letterClass,'word')"
+            :class="classMerge(wordClass, 'word')"
             >
           <span v-for="(letter, j) in word"
                 :key="`${id}_w_${i}_l_${j}`"
-                class="letter"
+                :class="classMerge(letterClass, 'letter')"
                 v-html="letter"/>
       </span>
 
-      <span v-else class="word" v-html="word" />
+      <span v-else
+            v-html="word"
+            :class="classMerge(wordClass,'word')"/>
     </span>
   </component>
 </template>
