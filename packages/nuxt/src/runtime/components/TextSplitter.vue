@@ -99,7 +99,7 @@ watch(() => props.text, () => {
 }
 .letter, .word {
   /* give more space to avoid cut text */
-  line-height: 1.1em;
+  line-height: 1.2em;
 }
 
 .word {
