@@ -15,6 +15,10 @@
                         :once="false"
                         style="font-size: 5rem"
                         @click="changeText"/>
+
+  </div>
+  <div class="box-wrapper">
+    <FadeUp class="box"></FadeUp>
   </div>
 
   <SvgMediaMainRenderer />
@@ -33,5 +37,16 @@ const changeText = () => {
   padding: 5rem;
   color: white;
   background: red;
+}
+
+.box-wrapper {
+  overflow: hidden;
+}
+
+.box {
+  width: 50vi;
+  height: 50vi;
+  background: blue;
+  margin-top: 100vh;
 }
 </style>

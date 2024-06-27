@@ -19,7 +19,7 @@ watch(() => el.value, (element) => {
     once: props.once,
     onInView: () => {
       animate(element, {
-        y: '0%',
+        y: ["30%", 0],
         opacity: 1
       }, {
         delay: props.delay ?? 0,
