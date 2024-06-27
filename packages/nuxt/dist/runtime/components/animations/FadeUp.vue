@@ -10,7 +10,7 @@ const props = defineProps<{
   once?: boolean
 }>()
 
-const el = ref<HTMLElement>(null)
+const el = ref<HTMLElement | null>(null)
 
 watch(() => el.value, (element) => {
   if (!element) return
@@ -19,7 +19,7 @@ watch(() => el.value, (element) => {
     once: props.once,
     onInView: () => {
       animate(element, {
-        y: '0%',
+        y: ["30%", 0],
         opacity: 1
       }, {
         delay: props.delay ?? 0,
@@ -28,15 +28,13 @@ watch(() => el.value, (element) => {
       })
     },
     onOutView: () => {
-      if (!props.once) {
-        animate(element, {
-          y: '30%',
-          opacity: 0
-        }, {
-          duration: 1,
-          ease: [.23, 1, .32, 1]
-        })
-      }
+      animate(element, {
+        y: '30%',
+        opacity: 0
+      }, {
+        duration: 1,
+        ease: [.23, 1, .32, 1]
+      })
     },
     amount: props.threshold
   })

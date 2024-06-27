@@ -9,18 +9,22 @@ interface Options {
 }
 
 export function useInView (el: any, options?: Options | undefined) {
-  const state = ref(false)
+  const ranOnce = ref(false)
   
   watch(() => el, (el) => {
     if (!el || (isRef(el) && !el.value)) return
     
     inView(isRef(el) ? el.value : el, ({ target }) => {
-      state.value = true
+      if (ranOnce.value && options?.once) return
       
       options && options.onInView && options.onInView(target as any)
       
+      ranOnce.value = true
+      
       return () => {
-        state.value = false
+        if (options?.once) return
+        
+        ranOnce.value = false
         
         options && options.onOutView && options.onOutView(target as any)
       }
@@ -30,5 +34,5 @@ export function useInView (el: any, options?: Options | undefined) {
     })
   }, { immediate: true })
   
-  return computed(() => state.value)
+  return computed(() => ranOnce.value)
 }
