@@ -16,6 +16,14 @@
                         style="font-size: 5rem"
                         @click="changeText"/>
 
+    <MediaElement :data="{
+      url: 'https://www.aeroportidipuglia.it/wp-content/uploads/2023/06/garganoeasytoreach_2023_gargano_header.png',
+    }"></MediaElement>
+
+    <MediaElement :data="{
+      url: 'https://www.aeroportidipuglia.it/wp-content/uploads/2023/06/garganoeasytoreach_2023_gargano_header.png',
+    }" simple-image></MediaElement>
+
   </div>
   <div class="box-wrapper">
     <FadeUp class="box"></FadeUp>
