@@ -84,7 +84,9 @@ onNuxtReady(() => {
   </ClientOnly>
 </template>
 
-<style>
+<style scoped>
+@import url("../styles.css");
+
 :root {
   --svg-fill: currentColor;
 }

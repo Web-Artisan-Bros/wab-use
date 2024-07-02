@@ -41,5 +41,5 @@ const svgIcons = useSvgMedia()
 </template>
 
 <style scoped>
-
+@import url("../styles.css");
 </style>

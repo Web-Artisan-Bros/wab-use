@@ -38,13 +38,14 @@ const mediaFormats = computed(() => {
 
     <img :src="url"
          :alt="alternativeText"
-         class="h-full w-full block"
+         class="h-full w-full block object-center"
          :class="{'object-cover': cover}"
+         :style="{'object-position': 'inherit'}"
          loading="lazy"
     >
   </picture>
 </template>
 
-<style scoped lang="scss">
-
+<style scoped>
+@import url("../styles.css");
 </style>
