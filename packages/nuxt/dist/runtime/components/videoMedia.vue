@@ -53,5 +53,5 @@ const classes = computed(() => props.class)
 </template>
 
 <style scoped>
-
+@import url("../styles.css");
 </style>

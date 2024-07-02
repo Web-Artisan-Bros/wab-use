@@ -40,7 +40,7 @@ defineExpose({el})
     <template v-else>
       <img v-if="simpleImage"
            :src="data.url" :alt="data.alternativeText"
-           :class="classMerge('w-full h-full object-center', imgClass, {'object-cover': cover, 'object-contain': !cover})">
+           :class="classMerge('w-full h-full block object-center', imgClass, {'object-cover': cover, 'object-contain': !cover})">
 
       <ImageMedia v-else
                  :url="data.url"
@@ -52,6 +52,6 @@ defineExpose({el})
   </Component>
 </template>
 
-<style>
-.w-full{width:100%}.h-full{height:100%}.object-center{-o-object-position:center;object-position:center}.object-cover{-o-object-fit:cover;object-fit:cover}.object-contain{-o-object-fit:contain;object-fit:contain}
+<style scoped>
+@import url("../styles.css");
 </style>

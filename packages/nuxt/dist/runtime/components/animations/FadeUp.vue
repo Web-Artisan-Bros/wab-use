@@ -1,25 +1,39 @@
 <script lang="ts" setup>
 import { animate } from 'framer-motion/dom'
-import { ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useInView } from '#imports'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   delay?: number,
   threshold?: number,
   tag?: string,
   once?: boolean
-}>()
+  from?: 'left' | 'right' | 'top' | 'bottom'
+}>(), {
+  from: 'bottom'
+})
 
 const el = ref<HTMLElement | null>(null)
+const wrapper = ref<HTMLElement | null>(null)
 
-watch(() => el.value, (element) => {
-  if (!element) return
+const initialStyles = computed(() => {
+  const fromProp = ['left', 'right'].includes(props.from) ? 'X' : 'Y'
+  const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
 
-  useInView(element, {
+  return { 'transform': `translate${fromProp}(${fromValue})` }
+})
+
+watch(() => wrapper.value, (wrapper) => {
+  if (!wrapper) return
+
+  useInView(wrapper, {
     once: props.once,
     onInView: () => {
-      animate(element, {
-        y: ["30%", 0],
+      const fromProp = ['left', 'right'].includes(props.from) ? 'x' : 'y'
+      const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
+
+      animate(el.value as HTMLElement, {
+        [fromProp]: [fromValue, 0],
         opacity: 1
       }, {
         delay: props.delay ?? 0,
@@ -28,8 +42,11 @@ watch(() => el.value, (element) => {
       })
     },
     onOutView: () => {
-      animate(element, {
-        y: '30%',
+      const fromProp = ['left', 'right'].includes(props.from) ? 'x' : 'y'
+      const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
+
+      animate(el.value as HTMLElement, {
+        [fromProp]: fromValue,
         opacity: 0
       }, {
         duration: 1,
@@ -43,11 +60,14 @@ watch(() => el.value, (element) => {
 </script>
 
 <template>
-  <Component :is="tag ?? 'div'" ref="el" class="fade-up">
-    <slot />
+  <Component :is="tag ?? 'div'" ref="wrapper" class="fade-up-wrapper">
+    <div ref="el" class="fade-up"
+         :style="initialStyles">
+      <slot/>
+    </div>
   </Component>
 </template>
 
 <style scoped>
-.fade-up{opacity:0;transform:translateY(30%)}
+.fade-up{opacity:0}
 </style>
