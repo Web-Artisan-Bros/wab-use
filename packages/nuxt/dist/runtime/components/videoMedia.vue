@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import type { MediaElementType } from './mediaElement.vue'
 import {useInView} from '../composables/inView'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = defineProps<{
   data: MediaElementType,
-  class: any
+  class: any,
+  inView?: boolean
 }>()
 
 const videoEl = ref<HTMLVideoElement | null>(null)
@@ -35,6 +36,12 @@ const poster = computed(() => {
 })
 const classes = computed(() => props.class)
 
+watch(() => props.inView, (value) => {
+  if (typeof value === 'boolean') {
+    ready.value = value
+  }
+})
+
 </script>
 
 <template>
@@ -46,7 +53,7 @@ const classes = computed(() => props.class)
     <source v-if="ready" :src="data.url" type="video/mp4">
   </video>
 
-  <img v-if="!videoIsReady" :src="poster" alt="video placeholder"
+  <img v-if="!videoIsReady && poster" :src="poster" alt="video placeholder"
        class="absolute inset-0 object-cover"
        :class="classes"
   >
