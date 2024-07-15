@@ -12,19 +12,32 @@ const triggerEl = ref<RendererNode | undefined | null>()
 const expanded = ref(false)
 const initialTargetStyles = ref<any>({})
 
-function setTargetRef(el: RendererNode) {
+function setTargetRef (el: RendererNode) {
   targetEl.value = el
 }
-function setTriggerRef(el: RendererNode) {
+
+function setTriggerRef (el: RendererNode) {
   triggerEl.value = el
 }
 
 watch(() => expanded.value, (value: boolean) => {
   if (targetEl.value && triggerEl.value) {
+    const lineClamp = getComputedStyle(targetEl.value as any).getPropertyValue('-webkit-line-clamp')
 
     if (value) {
       initialTargetStyles.value['offsetHeight'] = targetEl.value.offsetHeight
-      initialTargetStyles.value['-webkit-line-clamp'] = getComputedStyle(targetEl.value as any).getPropertyValue('-webkit-line-clamp')
+      initialTargetStyles.value['display'] = getComputedStyle(targetEl.value as any).getPropertyValue('display')
+
+      if (lineClamp) {
+        initialTargetStyles.value['-webkit-line-clamp'] = lineClamp
+      }
+    }
+
+    targetEl.value.style.overflow = 'hidden'
+    targetEl.value.style.height = targetEl.value.offsetHeight + 'px'
+
+    if (initialTargetStyles.value['display'] === 'none') {
+      targetEl.value.style.display = 'block'
     }
 
     const tl = [
@@ -41,14 +54,21 @@ watch(() => expanded.value, (value: boolean) => {
       }, { at: '<' }])
     }
 
-    animate(tl as any, {type: 'spring', duration: .5})
+    animate(tl as any, { type: 'spring', duration: .5 })
         .then(() => {
           const target = targetEl.value as HTMLElement
           const trigger = triggerEl.value as HTMLElement
 
           target.style.height = ''
-          // @ts-ignore
-          target.style['-webkit-line-clamp'] = (value ? 'unset' : '')
+
+          if (initialTargetStyles.value['display'] === 'none' && !value) {
+            target.style.display = ''
+          }
+
+          if (lineClamp) {
+            // @ts-ignore
+            target.style['-webkit-line-clamp'] = (value ? 'unset' : '')
+          }
 
           if (props.hideTriggerOnExpand && value) {
             trigger.style.display = 'none'
