@@ -10,6 +10,9 @@ const props = withDefaults(defineProps<{
   once?: boolean
   from?: 'left' | 'right' | 'top' | 'bottom'
 }>(), {
+  delay: 0,
+  threshold: 0.5,
+  tag: 'div',
   from: 'bottom'
 })
 

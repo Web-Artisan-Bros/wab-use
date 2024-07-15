@@ -38,19 +38,19 @@
       </template>
     </Expandable>
   </div>
-  <div class="box-wrapper">
+<!--  <div class="box-wrapper">
     <FadeUp class="box"></FadeUp>
-  </div>
+  </div>-->
 
   <SvgMediaMainRenderer />
 </template>
 
 <script setup>
-const text = ref('Hello World Lorem ipsum sit amet lorem ipsum')
+// const text = ref('Hello World Lorem ipsum sit amet lorem ipsum')
 
-const changeText = () => {
+/*const changeText = () => {
   text.value = 'Altro testo più semplice'
-}
+}*/
 </script>
 
 <style>

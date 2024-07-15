@@ -21,6 +21,7 @@ export default createConfigForNuxt({
         // ...Override rules, for example:
         '@stylistic/no-trailing-spaces': 'off',
         'vue/first-attribute-linebreak': 'off',
+        'vue/multi-word-component-names': 'off',
         '@stylistic/comma-dangle': 'off',
         '@typescript-eslint/no-explicit-any': 'off',
         '@stylistic/brace-style': 'off',

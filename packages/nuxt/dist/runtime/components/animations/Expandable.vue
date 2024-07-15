@@ -37,11 +37,15 @@ watch(() => expanded.value, (value: boolean) => {
 
     animate(tl as any, {type: 'spring', duration: .5})
         .then(() => {
-          targetEl.value.style.height = ''
-          targetEl.value.style['-webkit-line-clamp'] = value ? 'unset' : ''
+          const target = targetEl.value as HTMLElement
+          const trigger = triggerEl.value as HTMLElement
+
+          target.style.height = ''
+          // @ts-ignore
+          target.style['-webkit-line-clamp'] = (value ? 'unset' : '')
 
           if (props.hideTriggerOnExpand && value) {
-            triggerEl.value.style.display = 'none'
+            trigger.style.display = 'none'
           }
         })
   }
