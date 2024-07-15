@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type RendererNode, useSlots, watch } from 'vue'
+import { ref, type RendererNode, watch } from 'vue'
 import { onNuxtReady } from '#app'
 import { animate } from 'framer-motion/dom'
 

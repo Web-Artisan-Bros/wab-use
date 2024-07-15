@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type RendererNode, useSlots, watch } from 'vue'
+import { ref, type RendererNode, watch } from 'vue'
 import { onNuxtReady } from '#app'
 import { animate } from 'framer-motion/dom'
 
@@ -9,7 +9,6 @@ const props = defineProps<{
 
 const targetEl = ref<RendererNode | undefined | null>()
 const triggerEl = ref<RendererNode | undefined | null>()
-const slots = useSlots()
 const expanded = ref(false)
 const initialTargetStyles = ref<any>({})
 
