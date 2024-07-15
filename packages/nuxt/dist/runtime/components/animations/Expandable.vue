@@ -13,6 +13,13 @@ const slots = useSlots()
 const expanded = ref(false)
 const initialTargetStyles = ref<any>({})
 
+function setTargetRef(el: RendererNode) {
+  targetEl.value = el
+}
+function setTriggerRef(el: RendererNode) {
+  triggerEl.value = el
+}
+
 watch(() => expanded.value, (value: boolean) => {
   if (targetEl.value && triggerEl.value) {
 
@@ -52,9 +59,6 @@ watch(() => expanded.value, (value: boolean) => {
 })
 
 onNuxtReady(() => {
-  targetEl.value = slots.target?.()?.[0]?.el
-  triggerEl.value = slots.trigger?.()?.[0]?.el
-
   if (!targetEl.value || !triggerEl.value) {
     throw new Error('Missing target or trigger slot')
   }
@@ -66,8 +70,8 @@ onNuxtReady(() => {
 </script>
 
 <template>
-  <slot name="target"></slot>
-  <slot name="trigger"></slot>
+  <slot name="target" :setRef="setTargetRef"></slot>
+  <slot name="trigger" :setRef="setTriggerRef"></slot>
 </template>
 
 <style scoped>
