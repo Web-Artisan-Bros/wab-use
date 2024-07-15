@@ -71,7 +71,9 @@ watch(() => expanded.value, (value: boolean) => {
           }
 
           if (props.hideTriggerOnExpand && value) {
-            trigger.style.display = 'none'
+            setTimeout(() => {
+              trigger.style.display = 'none'
+            })
           }
         })
   }
