@@ -28,7 +28,7 @@ const mediaFormats = computed(() => {
 </script>
 
 <template>
-  <picture class="block">
+  <picture class="block" v-bind="$attrs">
     <template v-if="mediaFormats">
       <source v-for="(data, i) in mediaFormats"
               :key="i"
