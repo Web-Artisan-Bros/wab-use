@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { classMerge } from '@wab-use/libs'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export interface MediaElementType {
   url: string,
@@ -10,12 +10,13 @@ export interface MediaElementType {
   formats?: any[]
 }
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   data: MediaElementType
   tag?: string
   simpleImage?: boolean
   cover?: boolean
   imgClass?: string
+  class?: any
 }>(), {
   cover: true,
   tag: 'div',
@@ -23,12 +24,14 @@ withDefaults(defineProps<{
 })
 const el = ref<HTMLElement | null>()
 
+const classes = computed(() => props.class)
+
 defineExpose({el})
 
 </script>
 
 <template>
-  <Component :is="tag ?? 'div'" v-if="data" ref="el">
+  <Component :is="tag ?? 'div'" v-if="data" ref="el" :class="classes">
     <VideoMedia v-if="data.mime?.startsWith('video')"
                 class="w-full h-full"
                 :data="data"

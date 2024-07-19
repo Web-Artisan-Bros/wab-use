@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, type RendererNode, watch } from 'vue'
+import { ref, type RendererNode, watch, computed } from 'vue'
 import { onNuxtReady } from '#app'
 import { animate } from 'framer-motion/dom'
 
@@ -11,6 +11,9 @@ const targetEl = ref<RendererNode | undefined | null>()
 const triggerEl = ref<RendererNode | undefined | null>()
 const expanded = ref(false)
 const initialTargetStyles = ref<any>({})
+const isExpandable = computed(() => {
+  return targetEl.value && targetEl.value.offsetHeight < targetEl.value.scrollHeight
+})
 
 function setTargetRef (el: RendererNode) {
   targetEl.value = el
@@ -92,7 +95,7 @@ onNuxtReady(() => {
 
 <template>
   <slot name="target" :setRef="setTargetRef"></slot>
-  <slot name="trigger" :setRef="setTriggerRef"></slot>
+  <slot v-if="isExpandable" name="trigger" :setRef="setTriggerRef"></slot>
 </template>
 
 <style scoped>
