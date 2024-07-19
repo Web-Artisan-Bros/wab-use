@@ -11,9 +11,6 @@ const targetEl = ref<RendererNode | undefined | null>()
 const triggerEl = ref<RendererNode | undefined | null>()
 const expanded = ref(false)
 const initialTargetStyles = ref<any>({})
-const isExpandable = computed(() => {
-  return targetEl.value && targetEl.value.offsetHeight < targetEl.value.scrollHeight
-})
 
 function setTargetRef (el: RendererNode) {
   targetEl.value = el
@@ -83,11 +80,11 @@ watch(() => expanded.value, (value: boolean) => {
 })
 
 onNuxtReady(() => {
-  if (!targetEl.value || (isExpandable.value && !triggerEl.value)) {
+  if (!targetEl.value) {
     throw new Error('Missing target or trigger slot')
   }
 
-  triggerEl.value.addEventListener('click', () => {
+  triggerEl.value?.addEventListener('click', () => {
     expanded.value = !expanded.value
   })
 })
@@ -95,7 +92,7 @@ onNuxtReady(() => {
 
 <template>
   <slot name="target" :setRef="setTargetRef"></slot>
-  <slot v-if="isExpandable" name="trigger" :setRef="setTriggerRef"></slot>
+  <slot name="trigger" :setRef="setTriggerRef"></slot>
 </template>
 
 <style scoped>
