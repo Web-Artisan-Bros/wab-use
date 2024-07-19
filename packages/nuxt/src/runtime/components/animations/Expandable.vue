@@ -83,7 +83,7 @@ watch(() => expanded.value, (value: boolean) => {
 })
 
 onNuxtReady(() => {
-  if (!targetEl.value || !triggerEl.value) {
+  if (!targetEl.value || (isExpandable.value && !triggerEl.value)) {
     throw new Error('Missing target or trigger slot')
   }
 
