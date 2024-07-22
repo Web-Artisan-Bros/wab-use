@@ -48,13 +48,15 @@ watch(() => wrapper.value, (wrapper) => {
       const fromProp = ['left', 'right'].includes(props.from) ? 'x' : 'y'
       const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
 
-      animate(el.value as HTMLElement, {
-        [fromProp]: fromValue,
-        opacity: 0
-      }, {
-        duration: 1,
-        ease: [.23, 1, .32, 1]
-      })
+      if (el.value) {
+        animate(el.value as HTMLElement, {
+          [fromProp]: fromValue,
+          opacity: 0
+        }, {
+          duration: 1,
+          ease: [.23, 1, .32, 1]
+        })
+      }
     },
     amount: props.threshold
   })
