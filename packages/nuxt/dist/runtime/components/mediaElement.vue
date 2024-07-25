@@ -7,6 +7,7 @@ export interface MediaElementType {
   mime?: string,
   alternativeText: string,
   previewUrl?: string,
+  focal?: number[],
   formats?: any[]
 }
 
@@ -26,7 +27,25 @@ const el = ref<HTMLElement | null>()
 
 const classes = computed(() => props.class)
 
-defineExpose({el})
+const focalPoint = computed(() => {
+  const toReturn = []
+  const focal = props.data.focal
+
+  if (focal?.[0] !== undefined) {
+    toReturn.push(`${focal[0]}%`)
+  }
+  if (focal?.[1] !== undefined) {
+    toReturn.push(`${focal[1]}%`)
+  }
+
+  if (toReturn.length === 0) {
+    return null
+  }
+
+  return toReturn.join(' ')
+})
+
+defineExpose({ el })
 
 </script>
 
@@ -38,13 +57,18 @@ defineExpose({el})
                 v-bind="$attrs"/>
 
     <SvgMedia v-else-if="data.mime?.includes('svg')"
-             :url="data.url"
+              :url="data.url"
               v-bind="$attrs"/>
 
     <template v-else>
       <img v-if="simpleImage"
            :src="data.url" :alt="data.alternativeText"
-           :class="classMerge('w-full h-full block object-center', imgClass, {'object-cover': cover, 'object-contain': !cover})"
+           :class="classMerge('w-full h-full block',
+                    data.focal ? `` : 'object-center',
+                    imgClass,
+                    {'object-cover': cover, 'object-contain': !cover},
+                   )"
+           :style="{ 'object-position': focalPoint }"
            v-bind="$attrs">
 
       <ImageMedia v-else
@@ -52,7 +76,8 @@ defineExpose({el})
                   :alternative-text="data.alternativeText"
                   :formats="data.formats"
                   :cover="cover"
-                  :class="classMerge('w-full h-full object-center', imgClass)"
+                  :focal="data.focal"
+                  :class="classMerge('w-full h-full', imgClass)"
                   v-bind="$attrs"/>
     </template>
   </Component>
