@@ -3,7 +3,7 @@ import { classMerge } from '@wab-use/libs'
 import { animate, stagger } from 'framer-motion/dom'
 import TextSplitter from '../TextSplitter.vue'
 import type { AnimationPlaybackControls } from 'framer-motion'
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useInView } from '#imports'
 import { usePreferredReducedMotion } from '@vueuse/core'
 
@@ -39,6 +39,8 @@ const textToShow = ref(props.text)
 const wrapperEl = ref<{ el: HTMLElement }>()
 const hasRanOnce = ref(false)
 
+const reduceMotion = computed(() => preferredReducedMotion.value === 'reduce')
+
 const showText = () => {
   const elements = wrapperEl.value?.el?.querySelectorAll('.' + props.type)
 
@@ -68,7 +70,7 @@ const showText = () => {
     animate(wrapperEl.value?.el, {
       height: wrapperEl.value?.el.scrollHeight + 'px'
     }, {
-      duration: preferredReducedMotion.value ? 0 : props.durationOut
+      duration: reduceMotion.value ? 0 : props.durationOut
     }).then(() => {
       if (wrapperEl.value?.el)
         wrapperEl.value.el.style.height = ''
@@ -77,8 +79,8 @@ const showText = () => {
 
   animate(elements, animation,
       {
-        duration: preferredReducedMotion.value ? 0 : props.durationOut,
-        delay: preferredReducedMotion.value ? 0 : stagger(props.staggerIn)
+        duration: reduceMotion.value ? 0 : props.durationOut,
+        delay: reduceMotion.value ? 0 : stagger(props.staggerIn)
       })
 
   hasRanOnce.value = true
@@ -112,8 +114,8 @@ const hideText = (): AnimationPlaybackControls | undefined => {
   // first hide the current text
   return animate(elements, animation,
       {
-        duration: preferredReducedMotion.value ? 0 : props.durationOut,
-        delay: preferredReducedMotion.value ? 0 : stagger(props.staggerOut)
+        duration: reduceMotion.value ? 0 : props.durationOut,
+        delay: reduceMotion.value ? 0 : stagger(props.staggerOut)
       })
 }
 
