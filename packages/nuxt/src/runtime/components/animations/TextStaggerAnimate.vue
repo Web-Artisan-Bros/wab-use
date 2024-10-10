@@ -5,6 +5,7 @@ import TextSplitter from '../TextSplitter.vue'
 import type { AnimationPlaybackControls } from 'framer-motion'
 import { ref, watch } from 'vue'
 import { useInView } from '#imports'
+import { usePreferredReducedMotion } from '@vueuse/core'
 
 const props = withDefaults(
     defineProps<{
@@ -31,6 +32,8 @@ const props = withDefaults(
       once: true
     }
 )
+
+const preferredReducedMotion = usePreferredReducedMotion()
 
 const textToShow = ref(props.text)
 const wrapperEl = ref<{ el: HTMLElement }>()
@@ -74,8 +77,8 @@ const showText = () => {
 
   animate(elements, animation,
       {
-        duration: props.durationIn,
-        delay: stagger(props.staggerIn)
+        duration: preferredReducedMotion.value ? 0 : props.durationOut,
+        delay: preferredReducedMotion.value ? 0 : stagger(props.staggerIn)
       })
 
   hasRanOnce.value = true
@@ -109,8 +112,8 @@ const hideText = (): AnimationPlaybackControls | undefined => {
   // first hide the current text
   return animate(elements, animation,
       {
-        duration: props.durationOut,
-        delay: stagger(props.staggerOut)
+        duration: preferredReducedMotion.value ? 0 : props.durationOut,
+        delay: preferredReducedMotion.value ? 0 : stagger(props.staggerOut)
       })
 }
 
