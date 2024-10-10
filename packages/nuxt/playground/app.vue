@@ -75,15 +75,21 @@
       <FadeUp class="box"></FadeUp>
     </div>-->
 
+  <TextStaggerAnimate :text="text" type="letter" animation="fade"
+                      :once="false"
+                      style="font-size: 5rem"
+                      class="border border-red-400 m-10"
+                      @click="changeText"/>
+
   <SvgMediaMainRenderer/>
 </template>
 
 <script setup>
-// const text = ref('Hello World Lorem ipsum sit amet lorem ipsum')
+const text = ref('Hello World Lorem ipsum sit amet lorem ipsum')
 
-/*const changeText = () => {
-  text.value = 'Altro testo più semplice'
-}*/
+const changeText = () => {
+  text.value = ['Altro testo più semplice', 'Hello World Lorem ipsum sit amet lorem ipsum'].find(t => t !== text.value)
+}
 </script>
 
 <style>
