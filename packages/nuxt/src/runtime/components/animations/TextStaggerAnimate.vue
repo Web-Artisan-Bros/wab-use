@@ -57,6 +57,21 @@ const showText = () => {
 
   if (!elements || !elements.length || !animation) return
 
+  if (wrapperEl.value?.el) {
+    // when showing the text, set the height to auto so that it gets the correct height
+    wrapperEl.value.el.style.height = 'auto'
+
+    // animate the height to the correct height
+    animate(wrapperEl.value?.el, {
+      height: wrapperEl.value?.el.scrollHeight + 'px'
+    }, {
+      duration: preferredReducedMotion.value ? 0 : props.durationOut
+    }).then(() => {
+      if (wrapperEl.value?.el)
+        wrapperEl.value.el.style.height = ''
+    })
+  }
+
   animate(elements, animation,
       {
         duration: props.durationIn,
@@ -85,6 +100,11 @@ const hideText = (): AnimationPlaybackControls | undefined => {
   }
 
   if (!elements || !elements.length || !animation) return
+
+  if (wrapperEl.value?.el) {
+    // before hiding the text, set the height to the current height
+    wrapperEl.value.el.style.height = `${wrapperEl.value?.el.clientHeight}px`
+  }
 
   // first hide the current text
   return animate(elements, animation,
