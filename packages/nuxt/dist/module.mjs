@@ -1,26 +1,12 @@
-import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir } from '@nuxt/kit';
+import jiti from "file:///Users/florianleica/WAB/wab-use/packages/nuxt/node_modules/jiti/lib/index.js";
 
-const module = defineNuxtModule({
-  meta: {
-    name: "@wab-use/nuxt",
-    configKey: "@wab-use-nuxt"
-  },
-  // Default configuration options of the Nuxt module
-  defaults: {},
-  async setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url);
-    await addComponentsDir({
-      path: resolver.resolve("./runtime/components"),
-      // path of components
-      pathPrefix: false,
-      // Prefix component name by its path.
-      prefix: "",
-      // Prefix all matched components.
-      global: true
-      // Registers components to be globally available.
-    });
-    addImportsDir([resolver.resolve("./runtime/composables")]);
+/** @type {import("/Users/florianleica/WAB/wab-use/packages/nuxt/src/module")} */
+const _module = jiti(null, {
+  "esmResolve": true,
+  "interopDefault": true,
+  "alias": {
+    "@wab-use/nuxt": "/Users/florianleica/WAB/wab-use/packages/nuxt"
   }
-});
+})("/Users/florianleica/WAB/wab-use/packages/nuxt/src/module.ts");
 
-export { module as default };
+export default _module;
