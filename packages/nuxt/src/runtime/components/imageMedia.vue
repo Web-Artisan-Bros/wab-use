@@ -60,7 +60,7 @@ const mediaFormats = computed(() => {
     <img :src="url"
          :alt="alternativeText"
          class="h-full w-full block"
-         :class="{'object-cover': cover}"
+         :class="{'object-cover': cover, 'object-contain': !cover}"
          :style="{'object-position': 'inherit'}"
          loading="lazy"
     >
