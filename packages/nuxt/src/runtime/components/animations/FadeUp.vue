@@ -40,6 +40,12 @@ watch(() => wrapper.value, (wrapper) => {
       const fromProp = ['left', 'right'].includes(props.from) ? 'x' : 'y'
       const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
 
+      if (reduceMotion.value){
+        el.value!.style.opacity = '1'
+        el.value!.style.transform = 'none'
+        return
+      }
+
       animate(el.value as HTMLElement, {
         [fromProp]: [fromValue, 0],
         opacity: 1
@@ -54,6 +60,10 @@ watch(() => wrapper.value, (wrapper) => {
       const fromValue = ['left', 'top'].includes(props.from) ? '-30%' : '30%'
 
       if (el.value) {
+        if (reduceMotion.value){
+          return
+        }
+
         animate(el.value as HTMLElement, {
           [fromProp]: fromValue,
           opacity: 0
