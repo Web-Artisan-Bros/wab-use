@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v1.0.53
+
+[compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/v1.0.52...v1.0.53)
+
+### 🏡 Chore
+
+- **release:** V1.0.52 ([200d790](https://github.com/Web-Artisan-Bros/wab-use/commit/200d790))
+
+### ❤️ Contributors
+
+- Florian Leica ([@florianleica-u2y](http://github.com/florianleica-u2y))
+
 ## v1.0.52
 
 [compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/v1.0.51...v1.0.52)
