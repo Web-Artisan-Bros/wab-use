@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <!--    <SvgMedia style="color: white" eager url="http://localhost:8056/assets/c4744fa6-a211-4709-90e0-1f46d5e1c29c" />
+       <!-- <SvgMedia style="color: white" eager url="http://localhost:8056/assets/c4744fa6-a211-4709-90e0-1f46d5e1c29c" /> -->
 
         <TextStaggerAnimate :text="text" type="letter" animation="reveal"
                             style="font-size: 5rem"
@@ -16,13 +16,13 @@
                             style="font-size: 5rem"
                             @click="changeText"/>
 
-        <MediaElement :data="{
+        <!-- <MediaElement :data="{
           url: 'https://www.aeroportidipuglia.it/wp-content/uploads/2023/06/garganoeasytoreach_2023_gargano_header.png',
         }"></MediaElement>
 
         <MediaElement :data="{
           url: 'https://www.aeroportidipuglia.it/wp-content/uploads/2023/06/garganoeasytoreach_2023_gargano_header.png',
-        }" simple-image></MediaElement>-->
+        }" simple-image></MediaElement> -->
 
     <div class="flex flex-col gap-3">
       <Expandable hide-trigger-on-expand>
@@ -78,6 +78,7 @@
   <TextStaggerAnimate :text="text" type="letter" animation="fade"
                       :once="false"
                       style="font-size: 5rem"
+                      tag="h1"
                       class="border border-red-400 m-10"
                       @click="changeText"/>
 

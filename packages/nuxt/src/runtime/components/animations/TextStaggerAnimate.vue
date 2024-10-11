@@ -122,6 +122,11 @@ const hideText = (): AnimationPlaybackControls | undefined => {
 };
 
 const changeText = () => {
+  if(reduceMotion.value){
+    textToShow.value = props.text?.trim();
+    return;
+  }
+
   hideText()?.then(() => {
     // when all text is hidden, change the text and trigger the showText animation
     textToShow.value = props.text?.trim();
@@ -175,16 +180,11 @@ watch(
       :class="classMerge(`animation-${animation}`)"
       :tag="tag ?? 'div'"
       :type="type"
-      aria-hidden="true"
     />
-    <Component :is="tag ?? 'div'" class="text-stagger-for-accessibility">{{ textToShow }}</Component>
   </div>
 </template>
 
 <style scoped>
-.text-stagger-wrapper {
-  position: relative;
-}
 
 .text-stagger-change {
   &.animation-fade {
@@ -216,13 +216,5 @@ watch(
   }
 }
 
-.text-stagger-for-accessibility {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  color: transparent;
-  user-select: none;
-  pointer-events: none;
-}
+
 </style>

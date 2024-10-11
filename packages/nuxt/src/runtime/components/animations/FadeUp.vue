@@ -2,6 +2,7 @@
 import { animate } from 'framer-motion/dom'
 import { computed, ref, watch } from 'vue'
 import { useInView } from '#imports'
+import { usePreferredReducedMotion } from "@vueuse/core";
 
 const props = withDefaults(defineProps<{
   delay?: number,
@@ -16,8 +17,12 @@ const props = withDefaults(defineProps<{
   from: 'bottom'
 })
 
+const preferredReducedMotion = usePreferredReducedMotion();
+
 const el = ref<HTMLElement | null>(null)
 const wrapper = ref<HTMLElement | null>(null)
+
+const reduceMotion = computed(() => preferredReducedMotion.value === "reduce");
 
 const initialStyles = computed(() => {
   const fromProp = ['left', 'right'].includes(props.from) ? 'X' : 'Y'
@@ -40,7 +45,7 @@ watch(() => wrapper.value, (wrapper) => {
         opacity: 1
       }, {
         delay: props.delay ?? 0,
-        duration: 1,
+        duration: reduceMotion.value ? 0 : 1,
         ease: [.23, 1, .32, 1]
       })
     },
@@ -53,7 +58,7 @@ watch(() => wrapper.value, (wrapper) => {
           [fromProp]: fromValue,
           opacity: 0
         }, {
-          duration: 1,
+          duration: reduceMotion.value ? 0 : 1,
           ease: [.23, 1, .32, 1]
         })
       }
