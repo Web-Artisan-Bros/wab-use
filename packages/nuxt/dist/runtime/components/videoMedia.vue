@@ -40,7 +40,7 @@ watch(() => props.inView, (value) => {
   if (typeof value === 'boolean') {
     ready.value = value
   }
-})
+}, { immediate: true })
 
 </script>
 

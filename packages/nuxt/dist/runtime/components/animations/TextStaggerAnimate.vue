@@ -122,6 +122,11 @@ const hideText = (): AnimationPlaybackControls | undefined => {
 };
 
 const changeText = () => {
+  if(reduceMotion.value){
+    textToShow.value = props.text?.trim();
+    return;
+  }
+
   hideText()?.then(() => {
     // when all text is hidden, change the text and trigger the showText animation
     textToShow.value = props.text?.trim();
@@ -175,12 +180,10 @@ watch(
       :class="classMerge(`animation-${animation}`)"
       :tag="tag ?? 'div'"
       :type="type"
-      aria-hidden="true"
     />
-    <Component :is="tag ?? 'div'" class="text-stagger-for-accessibility">{{ textToShow }}</Component>
   </div>
 </template>
 
 <style scoped>
-.text-stagger-wrapper{position:relative}.text-stagger-change.animation-fade.split-by-word:deep(.word){opacity:0}.text-stagger-change.animation-fade.split-by-letter:deep(.letter){opacity:0}.text-stagger-change.animation-reveal.split-by-word:deep(.word){transform:translateY(100%)}.text-stagger-change.animation-reveal.split-by-letter:deep(.letter){transform:translateY(100%)}.text-stagger-for-accessibility{color:transparent;left:0;opacity:0;pointer-events:none;position:absolute;top:0;-webkit-user-select:none;-moz-user-select:none;user-select:none}
+.text-stagger-change.animation-fade.split-by-word:deep(.word){opacity:0}.text-stagger-change.animation-fade.split-by-letter:deep(.letter){opacity:0}.text-stagger-change.animation-reveal.split-by-word:deep(.word){transform:translateY(100%)}.text-stagger-change.animation-reveal.split-by-letter:deep(.letter){transform:translateY(100%)}
 </style>
