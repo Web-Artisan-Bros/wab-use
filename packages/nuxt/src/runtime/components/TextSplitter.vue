@@ -84,7 +84,7 @@ watch(
     :is="props.tag ?? 'div'"
     ref="el"
     class="text-splitter"
-    :class="classMerge($attrs.class, `split-by-${type}`)"
+    :class="classMerge('relative', $attrs.class, `split-by-${type}`)"
   >
     <!-- normal motion -->
     <div aria-hidden="true" v-if="!reduceMotion">
@@ -123,7 +123,6 @@ watch(
 
 <style scoped>
 .text-splitter {
-  position: relative;
 }
 
 .text-splitter-for-accessibility {
