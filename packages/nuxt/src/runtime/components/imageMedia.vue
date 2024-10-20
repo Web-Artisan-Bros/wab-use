@@ -4,6 +4,7 @@ import { computed } from 'vue'
 export interface ResponsiveImageFormat {
   width: number;
   url: string;
+  colorScheme?: 'light' | 'dark'
 }
 
 const props = defineProps<{
@@ -53,7 +54,7 @@ const mediaFormats = computed(() => {
     <template v-if="mediaFormats">
       <source v-for="(data, i) in mediaFormats"
               :key="i"
-              :media="'(max-width: ' + data.width + 'px)'"
+              :media="`(max-width: ${data.width}px ${data.colorScheme === 'dark' ? 'and prefers-color-scheme: dark' : ''}) `"
               :srcset="data.url">
     </template>
 

@@ -171,7 +171,7 @@ watch(
 </script>
 
 <template>
-  <div class="text-stagger-wrapper">
+  <div :class="classMerge('text-stagger-wrapper  overflow-hidden', $props.class)">
     <TextSplitter
       ref="wrapperEl"
       :text="textToShow"

@@ -61,7 +61,7 @@ defineExpose({ el })
               v-bind="$attrs"/>
 
     <template v-else>
-      <img v-if="simpleImage"
+      <img v-if="simpleImage && data.url"
            :src="data.url" :alt="data.alternativeText"
            :class="classMerge('w-full h-full block',
                     data.focal ? `` : 'object-center',
