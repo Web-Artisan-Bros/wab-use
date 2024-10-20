@@ -86,7 +86,7 @@
 </template>
 
 <script setup>
-const text = ref('Hello World Lorem ipsum sit amet lorem ipsum')
+const text = ref('Grazie&nbsp;a&nbsp;obiettivi&nbsp;chiari&nbsp;e&nbsp;misurabili,&nbsp;tracciamo&nbsp;la&nbsp;rotta&nbsp;del&nbsp;nostro&nbsp;impegno&nbsp;verso&nbsp;l\'ambiente,&nbsp;definendo&nbsp;le<br>&nbsp;tappe&nbsp;per&nbsp;raggiungere&nbsp;un&nbsp;futuro&nbsp;più&nbsp;sostenibile.')
 
 const changeText = () => {
   text.value = ['Altro testo più semplice', 'Hello World Lorem ipsum sit amet lorem ipsum'].find(t => t !== text.value)
