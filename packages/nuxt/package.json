@@ -1,6 +1,6 @@
 {
   "name": "@wab-use/nuxt",
-  "version": "1.0.55",
+  "version": "1.0.56",
   "description": "Generic elements for Nuxt and Vue 3",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "prepack": "nuxt-module-build build",
+    "build": "nuxt-module-build dev",
     "dev": "nuxi dev playground",
     "dev:build": "nuxi build playground",
     "types": "tsc src/runtime/stores/* -declaration --emitDeclarationOnly",
