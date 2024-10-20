@@ -2,6 +2,7 @@
 import { classMerge, uuid } from "@wab-use/libs";
 import { computed, ref, watch } from "vue";
 import { usePreferredReducedMotion } from "@vueuse/core";
+import sanitizeHtml from 'sanitize-html'
 
 const props = withDefaults(
   defineProps<{
@@ -27,6 +28,11 @@ const id = ref(uuid());
 const reduceMotion = computed(() => preferredReducedMotion.value === "reduce");
 
 const splitWords = (text: string): string[] => {
+  text = sanitizeHtml(props.text, {
+    allowedTags: [],
+    allowedAttributes: {}
+  }).replaceAll(' ', ' ')
+
   return (text.trim().split(" ") ?? []).reduce((acc, curr, i, arr) => {
     acc.push(curr);
 
