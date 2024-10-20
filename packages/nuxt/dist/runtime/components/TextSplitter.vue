@@ -27,6 +27,9 @@ const id = ref(uuid());
 const reduceMotion = computed(() => preferredReducedMotion.value === "reduce");
 
 const splitWords = (text: string): string[] => {
+  text = props.text.replace(/(<([^>]+)>)/gi, '')
+        .replaceAll(' ', ' ')
+
   return (text.trim().split(" ") ?? []).reduce((acc, curr, i, arr) => {
     acc.push(curr);
 
