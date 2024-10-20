@@ -41,7 +41,6 @@
     "framer-motion": "^11.2.12",
     "motion": "^10.18.0",
     "pinia": "^2.1.7",
-    "sanitize-html": "^2.13.1",
     "vue": "^3.4.27"
   },
   "devDependencies": {
