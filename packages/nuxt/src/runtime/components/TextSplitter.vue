@@ -107,7 +107,7 @@ watch(
           />
         </span>
 
-<!--        <span v-else v-html="word" :class="classMerge(wordClass, 'word')" />-->
+        <span v-else v-html="word" :class="classMerge(wordClass, 'word')" />
       </span>
     </div>
 
