@@ -3,7 +3,7 @@
        <!-- <SvgMedia style="color: white" eager url="http://localhost:8056/assets/c4744fa6-a211-4709-90e0-1f46d5e1c29c" /> -->
 
         <TextStaggerAnimate :text="text" type="letter" animation="reveal"
-                            style="font-size: 5rem"
+                            style="font-size: 5rem; text-align: center;"
                             @click="changeText"
         />
 
@@ -86,7 +86,8 @@
 </template>
 
 <script setup>
-const text = ref('Grazie&nbsp;a&nbsp;obiettivi&nbsp;chiari&nbsp;e&nbsp;misurabili,&nbsp;tracciamo&nbsp;la&nbsp;rotta&nbsp;del&nbsp;nostro&nbsp;impegno&nbsp;verso&nbsp;l\'ambiente,&nbsp;definendo&nbsp;le<br>&nbsp;tappe&nbsp;per&nbsp;raggiungere&nbsp;un&nbsp;futuro&nbsp;più&nbsp;sostenibile.')
+// const text = ref('Grazie&nbsp;a&nbsp;obiettivi&nbsp;chiari&nbsp;e&nbsp;misurabili,&nbsp;tracciamo&nbsp;la&nbsp;rotta&nbsp;del&nbsp;nostro&nbsp;impegno&nbsp;verso&nbsp;l\'ambiente,&nbsp;definendo&nbsp;le<br>&nbsp;tappe&nbsp;per&nbsp;raggiungere&nbsp;un&nbsp;futuro&nbsp;più&nbsp;sostenibile.')
+const text = ref('La sfida per un  milione di alberi')
 
 const changeText = () => {
   text.value = ['Altro testo più semplice', 'Hello World Lorem ipsum sit amet lorem ipsum'].find(t => t !== text.value)
