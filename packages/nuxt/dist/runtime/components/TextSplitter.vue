@@ -95,7 +95,7 @@ watch(
       <span
         v-for="(word, i) in sections"
         :key="`${id}_w_${i}`"
-        :class="classMerge(wrapperClass, 'wrapper', (!Array.isArray(word) ? 'space': ''))"
+        :class="classMerge(wrapperClass, 'wrapper', (word.toString() === ' ' ? 'space': ''))"
       >
         <span v-if="Array.isArray(word)" :class="classMerge(wordClass, 'word')"
         >

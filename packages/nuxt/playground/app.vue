@@ -11,7 +11,7 @@
           <TextSplitter text="Ciao come va?" type="letter"/>
         </FadeUp>
 
-        <TextStaggerAnimate :text="text" type="letter" animation="fade"
+        <TextStaggerAnimate :text="'Grazie alla loro partecipazione nella piantumazione, promuoviamo la consapevolezza nella nostra comunità, enfatizzando il ruolo che ognuno può giocare nella lotta contro il cambiamento climatico.'" type="letter" animation="fade"
                             :once="false"
                             style="font-size: 5rem"
                             @click="changeText"/>
