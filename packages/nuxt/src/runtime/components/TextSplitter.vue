@@ -29,12 +29,13 @@ const reduceMotion = computed(() => preferredReducedMotion.value === "reduce");
 const splitWords = (text: string): string[] => {
   text = props.text.replace(/(<([^>]+)>)/gi, '')
         .replaceAll(' ', ' ')
+        .replaceAll(/\s{2,}/g, ' ');
 
   return (text.trim().split(" ") ?? []).reduce((acc, curr, i, arr) => {
     acc.push(curr);
 
     if (i < arr.length - 1) {
-      acc.push("&nbsp;");
+      acc.push(" ");
     }
 
     return acc;
@@ -45,7 +46,7 @@ const splitLetters = (text: string) => {
   const words: string[] = splitWords(text.trim());
 
   return words.map((word) => {
-    if (word === "&nbsp;") {
+    if (word === " ") {
       return word;
     }
 
@@ -94,9 +95,10 @@ watch(
       <span
         v-for="(word, i) in sections"
         :key="`${id}_w_${i}`"
-        :class="classMerge(wrapperClass, 'wrapper')"
+        :class="classMerge(wrapperClass, 'wrapper', (!Array.isArray(word) ? 'space': ''))"
       >
-        <span v-if="Array.isArray(word)" :class="classMerge(wordClass, 'word')">
+        <span v-if="Array.isArray(word)" :class="classMerge(wordClass, 'word')"
+        >
           <span
             v-for="(letter, j) in word"
             :key="`${id}_w_${i}_l_${j}`"
@@ -105,7 +107,7 @@ watch(
           />
         </span>
 
-        <span v-else v-html="word" :class="classMerge(wordClass, 'word')" />
+<!--        <span v-else v-html="word" :class="classMerge(wordClass, 'word')" />-->
       </span>
     </div>
 
@@ -139,18 +141,28 @@ watch(
   pointer-events: none;
 }
 
+.wrapper{
+  display: inline;
+
+  &.space {
+    &:after {
+      content: ' ';
+    }
+  }
+}
+
 .letter,
 .word {
   /* give more space to avoid cut text */
   line-height: 1.2em;
+  display: inline-flex;
 }
 
 .word {
+  overflow: hidden;
   white-space: nowrap;
 }
 
 span {
-  display: inline-flex;
-  overflow: hidden;
 }
 </style>
