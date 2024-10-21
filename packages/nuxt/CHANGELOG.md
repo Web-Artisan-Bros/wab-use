@@ -1,6 +1,10 @@
 # Changelog
 
 
+## v1.0.61
+
+[compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/v1.0.60...v1.0.61)
+
 ## v1.0.60
 
 [compare changes](https://github.com/Web-Artisan-Bros/wab-use/compare/v1.0.59...v1.0.60)
